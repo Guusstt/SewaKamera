@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Penyewaan Kamera - Canon</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f7f7f7;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .camera-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+      }
+
+      .camera-container div {
+        width: 45%;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .camera-container h3 {
+        margin-top: 0;
+      }
+
+      .camera-container img {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        height: auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .camera-container p {
+        margin: 0;
+        color: #777;
+      }
+
+      .camera-container button {
+        display: block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .camera-container button:hover {
+        background-color: #45a049;
+      }
+
+      .cart-container {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #fff;
+      }
+
+      .cart-container h2 {
+        margin-top: 0;
+      }
+
+      .cart-container ul {
+        list-style-type: none;
+        padding: 0;
+      }
+
+      .cart-container li {
+        margin-bottom: 10px;
+      }
+
+      .cart-container li:last-child {
+        margin-bottom: 0;
+      }
+
+      .cart-container li span {
+        font-weight: bold;
+      }
+    </style>
+    <script>
+      // Variabel untuk menyimpan produk yang dipilih
+      var cart = [];
+
+      // Fungsi untuk menambahkan produk ke keranjang
+      function addToCart(product) {
+        cart.push(product);
+        updateCart();
+      }
+
+      // Fungsi untuk menghapus produk dari keranjang
+      function removeFromCart(product) {
+        var index = cart.indexOf(product);
+        if (index !== -1) {
+          cart.splice(index, 1);
+        }
+        updateCart();
+      }
+
+      // Fungsi untuk checkout dan mengirim data ke halaman pemesanan
+      function checkout() {
+        // Simpan data keranjang ke session storage
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+
+        // Simpan data nama, nomor telepon, dan email ke session storage
+        var name = document.getElementById("name").value;
+        var phone = document.getElementById("phone").value;
+        var email = document.getElementById("email").value;
+
+        sessionStorage.setItem("name", name);
+        sessionStorage.setItem("phone", phone);
+        sessionStorage.setItem("email", email);
+
+        // Arahkan ke halaman pemesanan
+        window.location.href = "order.html";
+      }
+
+      // Fungsi untuk memperbarui tampilan keranjang
+      function updateCart() {
+        var cartContainer = document.getElementById("cart-container");
+        var cartList = document.getElementById("cart-list");
+
+        // Menghapus semua elemen dalam keranjang
+        while (cartList.firstChild) {
+          cartList.removeChild(cartList.firstChild);
+        }
+
+        // Menambahkan setiap produk dalam keranjang ke tampilan
+        for (var i = 0; i < cart.length; i++) {
+          var product = cart[i];
+          var listItem = document.createElement("li");
+          listItem.textContent = product;
+          cartList.appendChild(listItem);
+
+          var removeButton = document.createElement("button");
+          removeButton.textContent = "Remove";
+          removeButton.setAttribute(
+            "onclick",
+            "removeFromCart('" + product + "')"
+          );
+          listItem.appendChild(removeButton);
+        }
+
+        // Memperbarui jumlah produk dalam keranjang
+        var itemCount = document.getElementById("item-count");
+        itemCount.textContent = cart.length;
+
+        // Menampilkan atau menyembunyikan keranjang
+        if (cart.length > 0) {
+          cartContainer.style.display = "block";
+        } else {
+          cartContainer.style.display = "none";
+        }
+      }
+      // Variabel untuk menyimpan produk yang dipilih
+      var cart = [];
+
+      // Fungsi untuk menambahkan produk ke keranjang
+      function addToCart(product) {
+        cart.push(product);
+        updateCart();
+      }
+
+      // Fungsi untuk menghapus produk dari keranjang
+      function removeFromCart(product) {
+        var index = cart.indexOf(product);
+        if (index !== -1) {
+          cart.splice(index, 1);
+        }
+        updateCart();
+      }
+
+      // Fungsi untuk checkout dan mengirim data ke halaman pemesanan
+      function checkout() {
+        // Simpan data keranjang ke session storage
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+
+        // Arahkan ke halaman pemesanan
+        window.location.href = "order.html";
+      }
+
+      // Fungsi untuk memperbarui tampilan keranjang
+      function updateCart() {
+        var cartContainer = document.getElementById("cart-container");
+        var cartList = document.getElementById("cart-list");
+
+        // Menghapus semua elemen dalam keranjang
+        while (cartList.firstChild) {
+          cartList.removeChild(cartList.firstChild);
+        }
+
+        // Menambahkan setiap produk dalam keranjang ke tampilan
+        for (var i = 0; i < cart.length; i++) {
+          var product = cart[i];
+          var listItem = document.createElement("li");
+          listItem.textContent = product;
+          cartList.appendChild(listItem);
+
+          var removeButton = document.createElement("button");
+          removeButton.textContent = "Remove";
+          removeButton.setAttribute(
+            "onclick",
+            "removeFromCart('" + product + "')"
+          );
+          listItem.appendChild(removeButton);
+        }
+
+        // Memperbarui jumlah produk dalam keranjang
+        var itemCount = document.getElementById("item-count");
+        itemCount.textContent = cart.length;
+
+        // Menampilkan atau menyembunyikan keranjang
+        if (cart.length > 0) {
+          cartContainer.style.display = "block";
+        } else {
+          cartContainer.style.display = "none";
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>Penyewaan Kamera - Canon</h1>
+
+    <div class="camera-container">
+      <div>
+        <h3>Canon EOS R5 Full-Frame Mirrorless</h3>
+        <img
+          src="https://d1hjkbq40fs2x4.cloudfront.net/2020-07-20/files/11_eosr5_Front_RF24-105mmF4LISUSM.png"
+          alt="Canon EOS R5"
+        />
+        <p>Price: Rp600K/hari</p>
+        <button onclick="addToCart('Canon EOS R5')">Add to Cart</button>
+      </div>
+
+      <div>
+        <h3>Canon EOS EOS 750D</h3>
+        <img
+          src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//87/MTA-2733701/canon_canon-eos-750d-kamera-dslr_full05.jpg"
+          alt="Canon EOS R5"
+        />
+        <p>Price: Rp100K/hari</p>
+        <button onclick="addToCart('Canon EOS EOS 750D')">Add to Cart</button>
+      </div>
+
+      <div>
+        <h3>Canon EOS 1D MARK-III</h3>
+        <img
+          src="https://id.canon/media/image/2020/01/06/429197eea6fc435c86bfef562852d832_EOS-1D-X-Mark-III-Front-362.png"
+          alt="Canon EOS R5"
+        />
+        <p>Price: Rp450K/hari</p>
+        <button onclick="addToCart('Canon EOS 1D MARK-III')">
+          Add to Cart
+        </button>
+      </div>
+      <!-- Tambahkan kamera Canon lainnya di sini -->
+    </div>
+
+    <div class="camera-container">
+      <div>
+        <h3>Canon EOS 1100D</h3>
+        <img
+          src="https://s2.bukalapak.com/bukalapak-kontenz-production/content_attachments/40167/original/Canon_EOS_1100D_1.jpg"
+          alt="Canon EOS R5"
+        />
+        <p>Price: Rp60K/hari</p>
+        <button onclick="addToCart('Canon EOS 1100D')">Add to Cart</button>
+      </div>
+
+      <div>
+        <h3>Canon EOS M3 MIRRORLESS</h3>
+        <img
+          src="https://m.media-amazon.com/images/I/817Jw86bswL._AC_UF894,1000_QL80_.jpg"
+          alt="Canon EOS R5"
+        />
+        <p>Price: Rp100K/hari</p>
+        <button onclick="addToCart('Canon EOS M3 MIRRORLESS')">
+          Add to Cart
+        </button>
+      </div>
+
+      <div>
+        <h3>Canon EOS 600D</h3>
+        <img
+          src="https://ustatic.priceza.co.id/img/productgroup/520-1-l.jpg"
+          alt="Canon EOS R5"
+        />
+        <p>Price: Rp100K/hari</p>
+        <button onclick="addToCart('Canon EOS 600D')">Add to Cart</button>
+      </div>
+      <!-- Tambahkan kamera Canon lainnya di sini -->
+    </div>
+
+    <div id="cart-container" class="cart-container">
+      <h2>Keranjang</h2>
+      <ul id="cart-list"></ul>
+      <p>Total Items: <span id="item-count">0</span></p>
+      <button onclick="checkout()">Checkout</button>
+    </div>
+  </body>
+</html>

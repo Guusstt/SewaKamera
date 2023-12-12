@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Confirmation Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f7f7f7;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .confirmation-container {
+        max-width: 400px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .confirmation-container p {
+        margin-bottom: 10px;
+      }
+    </style>
+    <script>
+      // Fungsi untuk mendapatkan data pemesanan dari session storage
+      function getOrderDataFromSessionStorage() {
+        var orderData = sessionStorage.getItem("orderData");
+        return orderData ? JSON.parse(orderData) : null;
+      }
+
+      // Fungsi untuk menampilkan konfirmasi pemesanan
+      function displayConfirmation() {
+        var orderData = getOrderDataFromSessionStorage();
+        if (orderData) {
+          var confirmationContainer = document.getElementById(
+            "confirmation-container"
+          );
+
+          var heading = document.createElement("h2");
+          heading.textContent = "Konfirmasi Pemesanan";
+
+          var nameParagraph = document.createElement("p");
+          nameParagraph.textContent = "Nama: " + orderData.name;
+
+          var emailParagraph = document.createElement("p");
+          emailParagraph.textContent = "Email: " + orderData.email;
+
+          var phoneParagraph = document.createElement("p");
+          phoneParagraph.textContent = "Nomor Telepon: " + orderData.phone;
+
+          var cartParagraph = document.createElement("p");
+          cartParagraph.textContent =
+            "Barang yang Dipesan: " + orderData.cart.join(", ");
+
+          confirmationContainer.appendChild(heading);
+          confirmationContainer.appendChild(nameParagraph);
+          confirmationContainer.appendChild(emailParagraph);
+          confirmationContainer.appendChild(phoneParagraph);
+          confirmationContainer.appendChild(cartParagraph);
+        } else {
+          // Jika data pemesanan tidak tersedia, tampilkan pesan error
+          var errorContainer = document.getElementById("error-container");
+          errorContainer.textContent = "Data pemesanan tidak ditemukan.";
+        }
+      }
+    </script>
+  </head>
+
+  <body onload="displayConfirmation()">
+    <h1>Confirmation Page</h1>
+
+    <div id="confirmation-container" class="confirmation-container"></div>
+
+    <div id="error-container"></div>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Penyewaan Kamera</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f7f7f7;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .camera-container {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 20px;
+      }
+
+      .camera-container div {
+        width: 45%;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .camera-container h3 {
+        margin-top: 0;
+      }
+
+      .camera-container img {
+        display: block;
+        margin-bottom: 10px;
+        width: 100%;
+        height: auto;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .camera-container p {
+        margin: 0;
+        color: #777;
+      }
+
+      .camera-container button {
+        display: block;
+        margin-top: 10px;
+        padding: 8px 12px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .camera-container button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Penyewaan Kamera</h1>
+
+    <div class="camera-container">
+      <div>
+        <h3>Canon</h3>
+        <img
+          src="https://thumb.viva.co.id/media/frontend/thumbs3/2016/12/08/5848d6611399f-logo-canon_1265_711.jpg"
+          alt="Canon"
+        />
+        <button onclick="window.location.href='canon.html'">
+          View Cameras
+        </button>
+      </div>
+
+      <div>
+        <h3>Sony</h3>
+        <img
+          src="https://e1.pxfuel.com/desktop-wallpaper/531/3/desktop-wallpaper-sony-logo-backgrounds-sony-logo.jpg"
+          alt="Sony"
+        />
+        <button onclick="window.location.href='sony.html'">View Cameras</button>
+      </div>
+    </div>
+  </body>
+</html>
